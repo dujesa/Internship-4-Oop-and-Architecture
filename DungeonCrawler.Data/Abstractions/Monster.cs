@@ -1,7 +1,10 @@
-﻿namespace DungeonCrawler.Data.Abstractions
+﻿using DungeonCrawler.Data.Enums;
+using DungeonCrawler.Data.Models;
+
+namespace DungeonCrawler.Data.Abstractions
 {
-    public class Monster : Character
+    public abstract class Monster : Character
     {
-        public int AppearanceChance { get; }
+        public int AppearanceChance { get; protected set; }
     }
 }

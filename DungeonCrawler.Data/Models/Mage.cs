@@ -1,23 +1,61 @@
 ﻿using DungeonCrawler.Data.Abstractions;
+using DungeonCrawler.Data.Enums;
+using System;
 
 namespace DungeonCrawler.Data.Models
 {
-    public class Mage : Hero 
+    public class Mage : Hero
     {
         private bool _isResurrected = false;
 
-        public void Mana()
-        { }
+        public int Mana { get; private set; } = (int)HeroesInfo.MageInitialMana;
 
-        public void Resurrect()
+        public Mage() : base()
         {
-            if (_isResurrected)
+            Damage = (int)HeroesInfo.MageInitialDamage;
+            HealthPoints["max"] = (int)HeroesInfo.MageInitialHp;
+
+            FullHeal();
+        }
+
+        public void UseMana()
+        {
+            if (Mana <= 0)
             {
                 return;
             }
 
-            //HealthPoints = HealthPoints.max
+            Random random = new Random();
+            var manaHealingPoints = random.Next(1, Mana + 1);
+
+            Mana -= manaHealingPoints;
+
+            HealUp(manaHealingPoints);
+        }
+
+        public void UseFullMana()
+        {
+            if (Mana <= 0)
+            {
+                return;
+            }
+
+            HealUp(Mana);
+
+            Mana = 0;
+        }
+
+        public bool Resurrect()
+        {
+            if (_isResurrected)
+            {
+                return false;
+            }
+
+            FullHeal();
             _isResurrected = true;
+
+            return true;
         }
     }
 }

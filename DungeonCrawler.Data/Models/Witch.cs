@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Data.Abstractions;
+using DungeonCrawler.Data.Enums;
 
 namespace DungeonCrawler.Data.Models
 {
@@ -6,7 +7,7 @@ namespace DungeonCrawler.Data.Models
     {
         public Witch()
         {
-            //AppearingChance = AppearingChanceTypes.Witch;
+            AppearanceChance = (int)MonstersInfo.WitchAppearanceChance;
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
 
-namespace DungeonCrawler.Data.Models
+namespace DungeonCrawler.Data.Models.Monsters
 {
     public class Witch : Monster
     {
@@ -21,6 +21,7 @@ namespace DungeonCrawler.Data.Models
          * {
          * }
          */
+
         public override string ToString()
         {
             return $"Witch\n" +

@@ -2,7 +2,7 @@
 using DungeonCrawler.Data.Enums;
 using System;
 
-namespace DungeonCrawler.Data.Models
+namespace DungeonCrawler.Data.Models.Heroes
 {
     public class Ranger : Hero
     {
@@ -21,7 +21,7 @@ namespace DungeonCrawler.Data.Models
                 attackDamage *= 2;
             }
 
-            opponent.HealthPoints["current"] -= attackDamage;
+            opponent.HealthPoints.Current -= attackDamage;
         }
 
         public bool IsStunning()

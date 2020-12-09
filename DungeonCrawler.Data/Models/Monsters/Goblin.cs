@@ -1,15 +1,15 @@
 ﻿using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
 
-namespace DungeonCrawler.Data.Models
+namespace DungeonCrawler.Data.Models.Monsters
 {
     public class Goblin : Monster
     {
         public Goblin() : base()
-        { 
+        {
             AppearanceChance = (int)MonstersInfo.GoblinAppearanceChance;
             Damage = (int)MonstersInfo.GoblinDamage;
-            HealthPoints["max"] = (int)MonstersInfo.GoblinHp;
+            HealthPoints = new HealthPoints((int)MonstersInfo.GoblinHp);
 
             FullHeal();
         }

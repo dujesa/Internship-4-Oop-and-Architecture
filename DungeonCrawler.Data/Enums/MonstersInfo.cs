@@ -9,6 +9,7 @@
         BruteAppearanceChance = 30,
         BruteHp = 200,
         BruteDamage = 25,
+        BruteHardAttackChance = 25,
 
         WitchAppearanceChance = 10,
     }

@@ -1,6 +1,6 @@
 ﻿using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
-using DungeonCrawler.Data.Models;
+using DungeonCrawler.Data.Models.Monsters;
 using System;
 
 namespace DungeonCrawler.Domain.Factories

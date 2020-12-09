@@ -2,7 +2,7 @@
 using DungeonCrawler.Data.Enums;
 using System;
 
-namespace DungeonCrawler.Data.Models
+namespace DungeonCrawler.Data.Models.Heroes
 {
     public class Mage : Hero
     {
@@ -13,7 +13,7 @@ namespace DungeonCrawler.Data.Models
         public Mage(string name) : base(name)
         {
             Damage = (int)HeroesInfo.MageInitialDamage;
-            HealthPoints["max"] = (int)HeroesInfo.MageInitialHp;
+            HealthPoints = new HealthPoints((int)HeroesInfo.MageInitialHp);
 
             FullHeal();
         }

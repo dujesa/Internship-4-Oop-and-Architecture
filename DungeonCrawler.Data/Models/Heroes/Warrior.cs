@@ -1,32 +1,32 @@
 ﻿using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
 
-namespace DungeonCrawler.Data.Models
+namespace DungeonCrawler.Data.Models.Heroes
 {
     public class Warrior : Hero
     {
         public Warrior(string name) : base(name)
         {
             Damage = (int)HeroesInfo.WarriorInitialDamage;
-            HealthPoints["max"] = (int)HeroesInfo.WarriorInitialHp;
+            HealthPoints = new HealthPoints((int)HeroesInfo.WarriorInitialHp);
 
             FullHeal();
         }
 
         public void RageAttack(Monster opponent)
         {
-            var rageCostInHp = (int)(HealthPoints["max"] * 0.15);
+            var rageCostInHp = (int)(HealthPoints.Max * 0.15);
             //provjeri koliko je rageCost!!!
-            
-            if (HealthPoints["current"] < rageCostInHp)
+
+            if (HealthPoints.Current < rageCostInHp)
             {
                 Attack(opponent);
             }
 
-            HealthPoints["current"] -= rageCostInHp;
+            HealthPoints.Current -= rageCostInHp;
 
             var rageDamage = Damage * 2;
-            opponent.HealthPoints["current"] -= rageDamage;
+            opponent.HealthPoints.Current -= rageDamage;
         }
 
         public override string ToString()

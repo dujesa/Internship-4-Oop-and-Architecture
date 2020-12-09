@@ -18,10 +18,8 @@ namespace DungeonCrawler.Presentation
             var isWon = GameView.PlayGame(game);
 
             GameView.PromptResult(isWon);
-
-            /*
-             * GameView.ListStats(game);
-             */
+            GameView.ListPlayerStats(game);
+            
 
             Console.WriteLine("Thanks for playing game!");
         }

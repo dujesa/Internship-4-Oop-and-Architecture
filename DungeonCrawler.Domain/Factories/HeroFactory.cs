@@ -1,5 +1,5 @@
 ﻿using DungeonCrawler.Data.Abstractions;
-using DungeonCrawler.Data.Models;
+using DungeonCrawler.Data.Models.Heroes;
 
 namespace DungeonCrawler.Domain.Factories
 {
@@ -17,7 +17,7 @@ namespace DungeonCrawler.Domain.Factories
                 return new Mage(name);
             }
 
-            if (heroSpecies == Warrior)
+            if (heroSpecies == Ranger)
             {
                 return new Ranger(name);
             }

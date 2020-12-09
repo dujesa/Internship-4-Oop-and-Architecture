@@ -23,7 +23,7 @@ namespace DungeonCrawler.Domain.Services
 
             hero.Experience -= HeroLevelDataProvider.GetXpNeededForLevel(nextLevel);
             hero.Damage += HeroLevelDataProvider.GetDamageForLevel(nextLevel);
-            hero.HealthPoints["max"] = HeroLevelDataProvider.GetMaxHpForLevel(nextLevel);
+            hero.HealthPoints.LevelUp(nextLevel);
 
             hero.Level++;
         }

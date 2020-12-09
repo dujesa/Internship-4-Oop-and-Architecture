@@ -33,6 +33,26 @@ namespace DungeonCrawler.Presentation.Views
             return HeroFactory.CreateNew(name, species);
         }
 
+        //@ToDo: multiple games
+        public static void ListPlayerStats(Game game)
+        {
+            Console.WriteLine("\n\n---------Full Stats---------\n");
+
+            Console.WriteLine($"\n" +
+                $"Hero [{game.Hero.Name}]\n" +
+                $"\tlvl.{game.Hero.Level}\n" +
+                $"\tXP: {game.Hero.Experience}\n"
+                //$"\tBattles won: {game.Hero.Wins}\n"
+                );
+
+            foreach (var hero in game.Battles)
+            {
+                //left hp of hero?, similar to bite fight
+            }
+
+            Console.WriteLine($"\n----------------------------");
+        }
+
         public static void PromptResult(bool isWon)
         {
             if (isWon)

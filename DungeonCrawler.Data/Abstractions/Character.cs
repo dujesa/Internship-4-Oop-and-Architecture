@@ -1,36 +1,33 @@
 ﻿using DungeonCrawler.Data.Enums;
-using System.Collections.Generic;
+using DungeonCrawler.Data.Models;
 
 namespace DungeonCrawler.Data.Abstractions
 {
     public abstract class Character
     {
         public int Damage { get; set; }
-        public Dictionary<string, int> HealthPoints { get; } = new Dictionary<string, int>();
+        public HealthPoints HealthPoints { get; protected set; } = new HealthPoints();
 
         public Character()
         {
             Damage = (int)CharactersInfo.InitialDamage;
-            HealthPoints["max"] = (int)CharactersInfo.InitialHp;
-            HealthPoints["current"] = 0;
-
 
             FullHeal();
         }
 
         public virtual void Attack(Character opponent)
         {
-            opponent.HealthPoints["current"] -= Damage;
+            opponent.HealthPoints.Current -= Damage;
         }
 
         public void FullHeal()
         {
-            HealthPoints["curent"] = HealthPoints["max"];
+            HealthPoints.Current = HealthPoints.Max;
         }
 
         public override string ToString()
         {
-            return $"HP: {HealthPoints["current"]}";
+            return $"HP: {HealthPoints.Current}";
         }
     }
 }

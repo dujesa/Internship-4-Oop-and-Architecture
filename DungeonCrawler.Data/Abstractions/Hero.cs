@@ -16,5 +16,19 @@ namespace DungeonCrawler.Data.Abstractions
 
             HealthPoints["current"] += healingPoints;
         }
+
+        public Hero(string name) : base()
+        {
+            Name = name;
+
+            HeroDataStore.Heroes.Add(this);
+        }
+
+        public override string ToString()
+        {
+            return $"\t{Name}\n" +
+                $"\tlvl.{Level} [{Experience}/levelUpXP]\n" +
+                $"\t{ base.ToString() }\n";
+        }
     }
 }

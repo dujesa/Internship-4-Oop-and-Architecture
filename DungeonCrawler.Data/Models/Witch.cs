@@ -10,8 +10,7 @@ namespace DungeonCrawler.Data.Models
             AppearanceChance = (int)MonstersInfo.WitchAppearanceChance;
         }
 
-
-        /* ToDo: Separate into new service
+        /* @ToDo: Separate into new service
          * 
          * public List<IMonster> CreateTwoNewMonsters()
          * {
@@ -22,5 +21,10 @@ namespace DungeonCrawler.Data.Models
          * {
          * }
          */
+        public override string ToString()
+        {
+            return $"Witch\n" +
+                $"\t{base.ToString()}\n";
+        }
     }
 }

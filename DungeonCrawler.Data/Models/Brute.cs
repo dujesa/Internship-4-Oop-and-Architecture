@@ -19,9 +19,14 @@ namespace DungeonCrawler.Data.Models
         {
             Random random = new Random();
             int randomChance = random.Next(0, 100);
-            
+
             //25% chance for hard attack
-            return (randomChance < 25);
+            return randomChance < 25;
+        }
+        public override string ToString()
+        {
+            return $"Brute\n" +
+                $"\t{base.ToString()}\n";
         }
     }
 }

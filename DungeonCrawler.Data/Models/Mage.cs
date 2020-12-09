@@ -10,7 +10,7 @@ namespace DungeonCrawler.Data.Models
 
         public int Mana { get; private set; } = (int)HeroesInfo.MageInitialMana;
 
-        public Mage() : base()
+        public Mage(string name) : base(name)
         {
             Damage = (int)HeroesInfo.MageInitialDamage;
             HealthPoints["max"] = (int)HeroesInfo.MageInitialHp;
@@ -56,6 +56,12 @@ namespace DungeonCrawler.Data.Models
             _isResurrected = true;
 
             return true;
+        }
+
+        public override string ToString()
+        {
+            return $"Mage\n" +
+                $"{base.ToString()}";
         }
     }
 }

@@ -13,5 +13,11 @@ namespace DungeonCrawler.Data.Models
 
             FullHeal();
         }
+
+        public override string ToString()
+        {
+            return $"Goblin\n" +
+                $"\t{base.ToString()}";
+        }
     }
 }

@@ -5,7 +5,7 @@ namespace DungeonCrawler.Data.Models
 {
     public class Warrior : Hero
     {
-        public Warrior() : base()
+        public Warrior(string name) : base(name)
         {
             Damage = (int)HeroesInfo.WarriorInitialDamage;
             HealthPoints["max"] = (int)HeroesInfo.WarriorInitialHp;
@@ -27,7 +27,12 @@ namespace DungeonCrawler.Data.Models
 
             var rageDamage = Damage * 2;
             opponent.HealthPoints["current"] -= rageDamage;
+        }
 
+        public override string ToString()
+        {
+            return $"Warrior\n" +
+                $"{base.ToString()}";
         }
     }
 }

@@ -6,12 +6,14 @@ namespace DungeonCrawler.Data.Abstractions
     public abstract class Character
     {
         public int Damage { get; set; }
-        public Dictionary<string, int> HealthPoints { get; set; }
+        public Dictionary<string, int> HealthPoints { get; } = new Dictionary<string, int>();
 
         public Character()
         {
             Damage = (int)CharactersInfo.InitialDamage;
             HealthPoints["max"] = (int)CharactersInfo.InitialHp;
+            HealthPoints["current"] = 0;
+
 
             FullHeal();
         }
@@ -24,6 +26,11 @@ namespace DungeonCrawler.Data.Abstractions
         public void FullHeal()
         {
             HealthPoints["curent"] = HealthPoints["max"];
+        }
+
+        public override string ToString()
+        {
+            return $"HP: {HealthPoints["current"]}";
         }
     }
 }

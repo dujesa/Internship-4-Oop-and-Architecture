@@ -15,9 +15,9 @@ namespace DungeonCrawler.Presentation
             Hero hero = GameView.ProvideNewHeroFromUserInput();
             Game game = GameManager.InitializeNewGame(hero);
 
-            var isWon = GameView.PlayGame(game);
+            GameView.PlayGame(game);
 
-            GameView.PromptResult(isWon);
+            GameView.PromptResult(game);
             GameView.ListPlayerStats(game);
             
 

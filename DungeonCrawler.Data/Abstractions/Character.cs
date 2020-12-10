@@ -17,12 +17,17 @@ namespace DungeonCrawler.Data.Abstractions
 
         public virtual void Attack(Character opponent)
         {
-            opponent.HealthPoints.Current -= Damage;
+            opponent.HealthPoints.HurtFor(Damage);
         }
 
         public void FullHeal()
         {
-            HealthPoints.Current = HealthPoints.Max;
+            HealthPoints.FullHeal();
+        }
+
+        public bool IsDead()
+        {
+            return HealthPoints.Current == 0;
         }
 
         public override string ToString()

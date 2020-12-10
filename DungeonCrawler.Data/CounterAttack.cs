@@ -2,11 +2,20 @@
 
 namespace DungeonCrawler.Data
 {
-    public class CounterAttack : IMove
+    public class CounterAttack : Move
     {
-        public bool IsDefeating(IMove opponentMove)
+        public CounterAttack(Character mover) : base(mover)
+        {
+        }
+
+        public override bool IsDefeating(Move opponentMove)
         {
             return opponentMove is DirectAttack;
+        }
+
+        public override string ToString()
+        {
+            return "Counter attack";
         }
     }
 }

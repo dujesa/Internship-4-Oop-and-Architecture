@@ -10,11 +10,7 @@ namespace DungeonCrawler.Data.Abstractions
 
         public void HealUp(int healingPoints)
         {
-            var healedHp = HealthPoints.Current + healingPoints;
-
-            HealthPoints.Current = (healedHp <= HealthPoints.Max) ?
-                healedHp :
-                HealthPoints.Max;
+            HealthPoints.HealFor(healingPoints);
         }
 
         public Hero(string name) : base()

@@ -18,30 +18,5 @@ namespace DungeonCrawler.Domain.Services
 
             return game;
         }
-
-        public static void ExecuteGame(Game game)
-        {
-            var battleCounter = 0;
-
-            while (game.Status != GameStatus.HeroWon && game.Status != GameStatus.HeroLost && battleCounter < 10)
-            {
-                Battle battle = new Battle(game, game.Hero, game.Monsters[battleCounter]);
-
-                //@toDo: battle logic
-                /*var battleWinner = battleManager.ExecuteBattle(battle);
-
-                if (battleWinner is Monster)
-                {
-                    game.Status = GameStatus.HeroLost;
-                }
-
-                if (battleWinner is Hero)
-                {
-                    game.Status = GameStatus.HeroWon;
-                }
-
-                battleCounter++;*/
-            }
-        }
     }
 }

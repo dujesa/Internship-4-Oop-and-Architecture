@@ -24,7 +24,7 @@ namespace DungeonCrawler.Data.Models.Monsters
                 attackDamage = (int)(opponent.HealthPoints.Current * 0.5);
             }
 
-            opponent.HealthPoints.Current -= attackDamage;
+            opponent.HealthPoints.HurtFor(attackDamage);
         }
 
         private bool IsHardAttack()

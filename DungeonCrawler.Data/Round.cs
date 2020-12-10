@@ -5,13 +5,13 @@ namespace DungeonCrawler.Data
     public class Round
     {
         public bool IsStunRound { get; }
-        public IMove HeroMove { get; set; }
-        public IMove MonsterMove { get; set; }
+        public Move HeroMove { get; set; }
+        public Move MonsterMove { get; set; }
 
-        public Round(Battle battle, bool isStunRound)
+        public Round(Battle battle)
         {
             battle.Rounds.Add(this);
-            IsStunRound = isStunRound;
+            IsStunRound = battle.IsStunActivated;
         }
     }
 }

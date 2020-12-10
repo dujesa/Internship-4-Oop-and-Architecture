@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Data.Abstractions;
+using System;
 using System.Collections.Generic;
 
 namespace DungeonCrawler.Data
@@ -9,6 +10,7 @@ namespace DungeonCrawler.Data
         public Monster Monster { get; set; }
         public Character Winner { get; set; }
         public List<Round> Rounds { get; } = new List<Round>();
+        public bool IsStunActivated { get; private set; }
 
         public Battle(Game game, Hero hero, Monster monster)
         {
@@ -16,6 +18,16 @@ namespace DungeonCrawler.Data
 
             Hero = hero;
             Monster = monster;
+        }
+
+        public void ActivateStun()
+        {
+            IsStunActivated = true;
+        }
+
+        public bool HasWinner()
+        {
+            return Hero.IsDead() || Monster.IsDead();
         }
 
         public override string ToString()

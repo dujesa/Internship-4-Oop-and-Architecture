@@ -2,11 +2,19 @@
 
 namespace DungeonCrawler.Data
 {
-    public class DirectAttack : IMove
+    public class DirectAttack : Move
     {
-        public bool IsDefeating(IMove opponentMove)
+        public DirectAttack(Character mover) : base(mover)
+        {
+        }
+
+        public override bool IsDefeating(Move opponentMove)
         {
             return opponentMove is SideAttack;
+        }
+        public override string ToString()
+        {
+            return "Direct attack";
         }
     }
 }

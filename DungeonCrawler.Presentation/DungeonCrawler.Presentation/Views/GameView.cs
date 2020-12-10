@@ -53,19 +53,23 @@ namespace DungeonCrawler.Presentation.Views
             Console.WriteLine($"\n----------------------------");
         }
 
-        public static void PromptResult(bool isWon)
+        public static void PromptResult(Game game)
         {
-            if (isWon)
+            if (game.Status == GameStatus.HeroWon)
             {
                 Console.WriteLine("Congratulations, your hero won the game!");
             }
-            else
+            else if (game.Status == GameStatus.HeroLost)
             {
                 Console.WriteLine("Bad luck...unfortunately your hero died and lost game.");
             }
+            else
+            {
+                Console.WriteLine("BUG: Game error ocurred, game is over but there was no winner.");
+            }
         }
 
-        public static bool PlayGame(Game game)
+        public static void PlayGame(Game game)
         {
             Console.WriteLine($"Your hero {game.Hero.Name} is starting its Dungeon crawling adventure!");
 
@@ -73,24 +77,15 @@ namespace DungeonCrawler.Presentation.Views
 
             while (IsGameOver(game.Status, battleCounter) == false)
             {
-                Battle battle = new Battle(game, game.Hero, game.Monsters[battleCounter]);
-                Console.WriteLine($"TESTNI ISPIS: Startam bitku {battle}\n");
-                //@toDo: battle logic
-                /*var battleWinner = battleManager.ExecuteBattle(battle);
+                BattleView.DoBattle(game);
 
-                if (battleWinner is Monster)
-                {
-                    game.Status = GameStatus.HeroLost;
-                }
-
-                if (battleWinner is Hero)
+                if (game.Status == GameStatus.InPlay && battleCounter >= 10)
                 {
                     game.Status = GameStatus.HeroWon;
-                }*/
+                }
+
                 battleCounter++;
             }
-
-            return game.Status == GameStatus.HeroWon;
         }
 
         private static bool IsGameOver(GameStatus gameStatus, int battleCounter)

@@ -21,7 +21,7 @@ namespace DungeonCrawler.Data.Models.Heroes
                 attackDamage *= 2;
             }
 
-            opponent.HealthPoints.Current -= attackDamage;
+            opponent.HealthPoints.HurtFor(attackDamage);
         }
 
         public bool IsStunning()

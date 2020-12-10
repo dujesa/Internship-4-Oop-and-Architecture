@@ -1,4 +1,6 @@
-﻿namespace DungeonCrawler.Data.Abstractions
+﻿using System;
+
+namespace DungeonCrawler.Data.Abstractions
 {
     public abstract class Monster : Character
     {

@@ -23,10 +23,10 @@ namespace DungeonCrawler.Data.Models.Heroes
                 Attack(opponent);
             }
 
-            HealthPoints.Current -= rageCostInHp;
+            HealthPoints.HurtFor(rageCostInHp);
 
             var rageDamage = Damage * 2;
-            opponent.HealthPoints.Current -= rageDamage;
+            opponent.HealthPoints.HurtFor(rageDamage);
         }
 
         public override string ToString()

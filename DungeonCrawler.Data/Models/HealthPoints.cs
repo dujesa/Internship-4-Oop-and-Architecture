@@ -1,4 +1,7 @@
-﻿using DungeonCrawler.Data.Enums;
+﻿using DungeonCrawler.Data.Abstractions;
+using DungeonCrawler.Data.Enums;
+using DungeonCrawler.Data.Models.Heroes;
+using DungeonCrawler.Data.Models.Monsters;
 using System;
 
 namespace DungeonCrawler.Data.Models
@@ -8,14 +11,36 @@ namespace DungeonCrawler.Data.Models
         public int Max { get; }
         public int Current { get; protected set; }
 
-        public HealthPoints()
-        { 
-            Max = (int)CharactersInfo.InitialHp;
-        }
-
-        public HealthPoints(int max)
+        public HealthPoints(Character character)
         {
-            Max = max;
+            if (character is Warrior)
+            {
+                Max = (int)HeroesInfo.WarriorInitialHp;
+            }
+            else if (character is Mage)
+            {
+                Max = (int)HeroesInfo.MageInitialHp;
+            }
+            else if (character is Ranger)
+            {
+                Max = (int)HeroesInfo.RangerInitialHp;
+            }
+            else if (character is Brute)
+            {
+                Max = (int)MonstersInfo.BruteHp;
+            }
+            else if (character is Goblin)
+            {
+                Max = (int)MonstersInfo.GoblinHp;
+            }
+            else if (character is Witch)
+            {
+                Max = (int)MonstersInfo.WitchHp;
+            }
+            else
+            {
+                Max = (int)CharactersInfo.InitialHp;
+            }
         }
 
         public void HurtFor(int damagePoints)

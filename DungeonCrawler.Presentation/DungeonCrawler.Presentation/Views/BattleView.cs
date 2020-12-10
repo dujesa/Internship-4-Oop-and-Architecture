@@ -24,14 +24,23 @@ namespace DungeonCrawler.Presentation.Views
 
             BattleManager.ProvideWinner(battle);
 
+            Console.WriteLine($"\nBattle beetween {battle.Hero} and {battle.Monster} is finished.\n");
+
             if (battle.Winner is Monster)
             {
                 game.Status = GameStatus.HeroLost;
+                Console.WriteLine("Unfortunately your hero lost.\n");
             }
 
-            Console.WriteLine($"\nBattle beetween {battle.Hero} and {battle.Monster} is finished." +
-                $"\nWinner is: {battle.Winner}" +
-                $"\n");
+            if (battle.Winner is Hero hero)
+            {
+                var xpAward = battle.Monster.XpAward;
+                hero.ExperienceUp(xpAward);
+
+                Console.WriteLine($"Congratulations, your have has won and gained {xpAward}\n\n");
+                
+                hero.HealUpForBattleWin();
+            }
         }
 
         public static void ListStats(Game game)

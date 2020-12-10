@@ -7,9 +7,10 @@ namespace DungeonCrawler.Data.Models.Monsters
     {
         public Goblin() : base()
         {
+            XpAward = 1;
             AppearanceChance = (int)MonstersInfo.GoblinAppearanceChance;
-            Damage = (int)MonstersInfo.GoblinDamage;
-            HealthPoints = new HealthPoints((int)MonstersInfo.GoblinHp);
+            Damage = new Damage(this);
+            HealthPoints = new HealthPoints(this);
 
             FullHeal();
         }

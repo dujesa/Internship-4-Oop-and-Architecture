@@ -8,16 +8,17 @@ namespace DungeonCrawler.Data.Models.Monsters
     {
         public Brute() : base()
         {
+            XpAward = 3;
             AppearanceChance = (int)MonstersInfo.BruteAppearanceChance;
-            Damage = (int)MonstersInfo.BruteDamage;
-            HealthPoints = new HealthPoints((int)MonstersInfo.BruteHp);
+            Damage = new Damage(this);
+            HealthPoints = new HealthPoints(this);
 
             FullHeal();
         }
 
         public override void Attack(Character opponent)
         {
-            var attackDamage = Damage;
+            var attackDamage = Damage.Value;
 
             if (IsHardAttack())
             {

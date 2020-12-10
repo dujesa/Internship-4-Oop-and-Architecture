@@ -5,19 +5,20 @@ namespace DungeonCrawler.Data.Abstractions
 {
     public abstract class Character
     {
-        public int Damage { get; set; }
-        public HealthPoints HealthPoints { get; protected set; } = new HealthPoints();
+        public Damage Damage { get; protected set; }
+        public HealthPoints HealthPoints { get; protected set; }
 
         public Character()
         {
-            Damage = (int)CharactersInfo.InitialDamage;
+            Damage= new Damage(this);
+            HealthPoints = new HealthPoints(this);
 
             FullHeal();
         }
 
         public virtual void Attack(Character opponent)
         {
-            opponent.HealthPoints.HurtFor(Damage);
+            opponent.HealthPoints.HurtFor(Damage.Value);
         }
 
         public void FullHeal()

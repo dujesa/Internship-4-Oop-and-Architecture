@@ -14,7 +14,7 @@ namespace DungeonCrawler.Data.Models.Heroes
 
         public override void Attack(Character opponent)
         {
-            var attackDamage = Damage;
+            var attackDamage = Damage.Value;
 
             if (IsCriticalHit())
             {

@@ -12,8 +12,8 @@ namespace DungeonCrawler.Data.Models.Heroes
 
         public Mage(string name) : base(name)
         {
-            Damage = (int)HeroesInfo.MageInitialDamage;
-            HealthPoints = new HealthPoints((int)HeroesInfo.MageInitialHp);
+            Damage = new Damage(this);
+            HealthPoints = new HealthPoints(this);
 
             FullHeal();
         }

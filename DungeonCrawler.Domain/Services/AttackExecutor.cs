@@ -6,7 +6,7 @@ namespace DungeonCrawler.Domain.Services
     {
         public static void Execute(Character attacker, Character defender)
         {
-            defender.HealthPoints.HurtFor(attacker.Damage);
+            defender.HealthPoints.HurtFor(attacker.Damage.Value);
         }
     }
 }

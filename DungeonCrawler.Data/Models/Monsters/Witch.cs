@@ -7,6 +7,7 @@ namespace DungeonCrawler.Data.Models.Monsters
     {
         public Witch()
         {
+            XpAward = 5;
             AppearanceChance = (int)MonstersInfo.WitchAppearanceChance;
         }
 

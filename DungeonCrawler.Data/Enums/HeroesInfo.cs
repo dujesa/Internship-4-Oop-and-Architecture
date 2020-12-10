@@ -9,6 +9,8 @@
         MageInitialDamage = 12,
         MageInitialMana = 20,
 
+        RangerInitialHp = 100,
+        RangerInitialDamage = 10,
         RangerInitialCriticalHitChance = 10,
         RangerInitialStunChance = 5,
     }

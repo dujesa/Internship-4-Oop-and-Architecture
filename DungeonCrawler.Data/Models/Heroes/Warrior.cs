@@ -1,5 +1,4 @@
 ﻿using DungeonCrawler.Data.Abstractions;
-using DungeonCrawler.Data.Enums;
 
 namespace DungeonCrawler.Data.Models.Heroes
 {
@@ -7,8 +6,8 @@ namespace DungeonCrawler.Data.Models.Heroes
     {
         public Warrior(string name) : base(name)
         {
-            Damage = (int)HeroesInfo.WarriorInitialDamage;
-            HealthPoints = new HealthPoints((int)HeroesInfo.WarriorInitialHp);
+            Damage = new Damage(this);
+            HealthPoints = new HealthPoints(this);
 
             FullHeal();
         }
@@ -25,7 +24,7 @@ namespace DungeonCrawler.Data.Models.Heroes
 
             HealthPoints.HurtFor(rageCostInHp);
 
-            var rageDamage = Damage * 2;
+            var rageDamage = Damage.Value * 2;
             opponent.HealthPoints.HurtFor(rageDamage);
         }
 

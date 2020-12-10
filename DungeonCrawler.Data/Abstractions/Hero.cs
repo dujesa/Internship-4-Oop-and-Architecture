@@ -1,16 +1,33 @@
-﻿using System;
+﻿using DungeonCrawler.Data.Models;
+using System;
 
 namespace DungeonCrawler.Data.Abstractions
 {
     public abstract class Hero : Character
     {
         public string Name { get; set; } = "NoName Hero";
-        public int Experience { get; set; } = 0;
+        public Experience Experience { get; private set; } = new Experience();
         public int Level { get; set; } = 1;
 
         public void HealUp(int healingPoints)
         {
             HealthPoints.HealFor(healingPoints);
+        }
+
+        public void HealUpForBattleWin()
+        {
+            HealthPoints.HealFor((int)(HealthPoints.Max * 0.25));
+        }
+
+        public void ExperienceUp(int awardXp)
+        {
+            var didLevelUp = Experience.RaiseFor(awardXp);
+
+            if (didLevelUp)
+            {
+                Damage.RaiseFor(Level);
+                Level++;
+            }
         }
 
         public Hero(string name) : base()
@@ -23,7 +40,7 @@ namespace DungeonCrawler.Data.Abstractions
         public override string ToString()
         {
             return $"\t{Name}\n" +
-                $"\tlvl.{Level} [{Experience}/levelUpXP]\n" +
+                $"\tlvl.{Level} [{Experience.Current}/{Experience.ForLevelUp}]\n" +
                 $"\t{ base.ToString() }\n";
         }
     }

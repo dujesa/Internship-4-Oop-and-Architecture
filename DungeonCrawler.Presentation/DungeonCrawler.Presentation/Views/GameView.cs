@@ -102,7 +102,6 @@ namespace DungeonCrawler.Presentation.Views
             return HeroFactory.CreateNew(name, species);
         }
 
-        //@ToDo: multiple games
         public static void ListPlayerStats(Game game)
         {
             Console.WriteLine("\n\n---------Full Stats---------\n");

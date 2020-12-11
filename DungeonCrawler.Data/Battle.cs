@@ -25,6 +25,11 @@ namespace DungeonCrawler.Data
             IsStunActivated = true;
         }
 
+        public void DeactivateStun()
+        {
+            IsStunActivated = false;
+        }
+
         public bool HasWinner()
         {
             return Hero.IsDead() || Monster.IsDead();

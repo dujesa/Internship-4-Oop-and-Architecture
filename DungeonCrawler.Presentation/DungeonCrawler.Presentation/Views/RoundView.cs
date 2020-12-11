@@ -9,13 +9,13 @@ namespace DungeonCrawler.Presentation.Views
 {
     public static class RoundView
     {
-        public static void PlayRound(Battle battle)
+        public static void PlayRound(Game game, Battle battle)
         {
             Round round = RoundFactory.CreateNewIn(battle);
 
             if (round.IsStunRound)
             {
-                AttackExecutor.Execute(battle.Hero, battle.Monster);
+                AttackView.HandleStunning(battle);
 
                 return;
             }
@@ -53,20 +53,25 @@ namespace DungeonCrawler.Presentation.Views
 
             if (roundWinner is Hero hero)
             {
-                Console.WriteLine("Hero won in move battle and attacks monster.");
-                hero.Attack(battle.Monster);
+                Console.WriteLine("Hero won in move battle and attacks monster.\n");
+                AttackView.HandleAttack(hero, battle.Monster, battle, game);
             }
             else if (roundWinner is Monster monster)
             {
-                Console.WriteLine("Monster won in move battle and attacks hero.");
-                monster.Attack(battle.Hero);
+                Console.WriteLine("Monster won in move battle and attacks hero.\n");
+                AttackView.HandleAttack(battle.Monster, battle.Hero, battle, game);
             }
             else
             {
-                Console.WriteLine("Move battle ended with draw and no one attacks in this round.");
+                Console.WriteLine("Move battle ended with draw and no one attacks in this round.\n");
             }
 
-            //6. Display battle situation
+            if (game.IsJumbusActive)
+            {
+                JumbusHandler.Handle(game);
+                Console.WriteLine("\n!*!*!*!*!* J-U-M-B-U-S done *!*!*!*!*!\n");
+            }
+
             Console.WriteLine($"\n\n{battle}\n\n");
         }
     }

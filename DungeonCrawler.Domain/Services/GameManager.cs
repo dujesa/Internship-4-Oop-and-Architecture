@@ -1,8 +1,6 @@
 ﻿using DungeonCrawler.Data;
 using DungeonCrawler.Data.Abstractions;
-using DungeonCrawler.Data.Enums;
 using DungeonCrawler.Domain.Factories;
-using System;
 
 namespace DungeonCrawler.Domain.Services
 {

@@ -12,6 +12,7 @@ namespace DungeonCrawler.Data
         {
             battle.Rounds.Add(this);
             IsStunRound = battle.IsStunActivated;
+            battle.DeactivateStun();
         }
     }
 }

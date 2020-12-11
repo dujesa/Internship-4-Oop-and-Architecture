@@ -18,7 +18,7 @@ namespace DungeonCrawler.Presentation.Views
 
             while (battle.HasWinner() == false)
             {
-                RoundView.PlayRound(battle);
+                RoundView.PlayRound(game, battle);
             }
 
             BattleManager.ProvideWinner(battle);
@@ -52,7 +52,6 @@ namespace DungeonCrawler.Presentation.Views
                     $"Battle [vs {battle.Monster.GetType()}]" +
                     $"Winner: {battle.Winner}" +
                     $"Rounds: {battle.Rounds.Count}\n");
-                //left hp of hero?, similar to bite fight
             }
 
             Console.WriteLine($"\n----------------------------");

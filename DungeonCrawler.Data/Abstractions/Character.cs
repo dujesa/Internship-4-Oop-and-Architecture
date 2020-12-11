@@ -1,5 +1,4 @@
-﻿using DungeonCrawler.Data.Enums;
-using DungeonCrawler.Data.Models;
+﻿using DungeonCrawler.Data.Models;
 
 namespace DungeonCrawler.Data.Abstractions
 {
@@ -33,7 +32,7 @@ namespace DungeonCrawler.Data.Abstractions
 
         public override string ToString()
         {
-            return $"HP: {HealthPoints.Current}";
+            return $"HP: {HealthPoints.Current}/{HealthPoints.Max}";
         }
     }
 }

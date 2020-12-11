@@ -41,14 +41,9 @@ namespace DungeonCrawler.Presentation.Views
             Console.WriteLine($"\n" +
                 $"Hero [{game.Hero.Name}]\n" +
                 $"\tlvl.{game.Hero.Level}\n" +
-                $"\tXP: {game.Hero.Experience}\n"
-                //$"\tBattles won: {game.Hero.Wins}\n"
+                $"\tXP: {game.Hero.Experience}\n" +
+                $"\tBattles won: {game.Hero.Wins}\n"
                 );
-
-            foreach (var hero in game.Battles)
-            {
-                //left hp of hero?, similar to bite fight
-            }
 
             Console.WriteLine($"\n----------------------------");
         }
@@ -73,6 +68,7 @@ namespace DungeonCrawler.Presentation.Views
         {
             Console.WriteLine($"Your hero {game.Hero.Name} is starting its Dungeon crawling adventure!");
 
+            game.Status = GameStatus.InPlay;
             var battleCounter = 0;
 
             while (IsGameOver(game.Status, battleCounter) == false)
@@ -86,6 +82,18 @@ namespace DungeonCrawler.Presentation.Views
 
                 battleCounter++;
             }
+
+        }
+
+        public static bool IsTurnedOff()
+        {
+            Console.WriteLine("\n\nDo you wanna play another game?" +
+                "\n0 - Yes" +
+                "\n1 - No");
+
+
+            int.TryParse(Console.ReadLine(), out var gameSwitchInput);
+            return gameSwitchInput != 0;
         }
 
         private static bool IsGameOver(GameStatus gameStatus, int battleCounter)

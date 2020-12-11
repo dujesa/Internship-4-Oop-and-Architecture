@@ -8,7 +8,7 @@ namespace DungeonCrawler.Data.Models
 {
     public class HealthPoints
     {
-        public int Max { get; }
+        public int Max { get; private set; }
         public int Current { get; protected set; }
 
         public HealthPoints(Character character)
@@ -60,9 +60,9 @@ namespace DungeonCrawler.Data.Models
             Current = Max;
         }
 
-        public void LevelUp(int nextLevel)
+        public void RaiseMaxFor(int raisingValue)
         {
-            throw new NotImplementedException();
+            Max += raisingValue;
         }
     }
 }

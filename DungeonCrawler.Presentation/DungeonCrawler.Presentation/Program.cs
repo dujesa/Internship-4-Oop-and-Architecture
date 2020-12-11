@@ -12,14 +12,20 @@ namespace DungeonCrawler.Presentation
         {
             Console.WriteLine("-----DUNGEON CRAWLER GAME-----");
 
-            Hero hero = GameView.ProvideNewHeroFromUserInput();
-            Game game = GameManager.InitializeNewGame(hero);
+            var isGameTurnedOff = true;
 
-            GameView.PlayGame(game);
+            while (isGameTurnedOff == false)
+            {
+                Hero hero = GameView.ProvideNewHeroFromUserInput();
+                Game game = GameManager.InitializeNewGame(hero);
 
-            GameView.PromptResult(game);
-            GameView.ListPlayerStats(game);
-            
+                GameView.PlayGame(game);
+
+                GameView.PromptResult(game);
+                GameView.ListPlayerStats(game);
+
+                isGameTurnedOff = GameView.IsTurnedOff();
+            }
 
             Console.WriteLine("Thanks for playing game!");
         }

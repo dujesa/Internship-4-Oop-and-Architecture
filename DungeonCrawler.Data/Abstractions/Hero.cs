@@ -7,6 +7,7 @@ namespace DungeonCrawler.Data.Abstractions
     {
         public string Name { get; set; } = "NoName Hero";
         public Experience Experience { get; private set; } = new Experience();
+        public int Wins { get; set; } = 0;
         public int Level { get; set; } = 1;
 
         public void HealUp(int healingPoints)
@@ -14,8 +15,9 @@ namespace DungeonCrawler.Data.Abstractions
             HealthPoints.HealFor(healingPoints);
         }
 
-        public void HealUpForBattleWin()
+        public void AwardForBattleWin()
         {
+            Wins++;
             HealthPoints.HealFor((int)(HealthPoints.Max * 0.25));
         }
 
@@ -26,6 +28,7 @@ namespace DungeonCrawler.Data.Abstractions
             if (didLevelUp)
             {
                 Damage.RaiseFor(Level);
+                HealthPoints.RaiseMaxFor(Level*10);
                 Level++;
             }
         }

@@ -18,7 +18,6 @@ namespace DungeonCrawler.Presentation.Views
 
             while (battle.HasWinner() == false)
             {
-                //battle-rounds logic
                 RoundView.PlayRound(battle);
             }
 
@@ -39,7 +38,7 @@ namespace DungeonCrawler.Presentation.Views
 
                 Console.WriteLine($"Congratulations, your have has won and gained {xpAward}\n\n");
                 
-                hero.HealUpForBattleWin();
+                hero.AwardForBattleWin();
             }
         }
 

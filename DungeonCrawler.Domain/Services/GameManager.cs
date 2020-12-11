@@ -2,6 +2,7 @@
 using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
 using DungeonCrawler.Domain.Factories;
+using System;
 
 namespace DungeonCrawler.Domain.Services
 {
@@ -17,6 +18,18 @@ namespace DungeonCrawler.Domain.Services
             }
 
             return game;
+        }
+
+        public static int GetNumberOfGamesWon()
+        {
+            var numberOfGamesWon = 0;
+
+            foreach (var hero in HeroDataStore.Heroes)
+            {
+                numberOfGamesWon += hero.Wins;
+            }
+
+            return numberOfGamesWon;
         }
     }
 }

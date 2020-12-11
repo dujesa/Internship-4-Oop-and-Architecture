@@ -36,7 +36,7 @@ namespace DungeonCrawler.Presentation.Views
                 var xpAward = battle.Monster.XpAward;
                 hero.ExperienceUp(xpAward);
 
-                Console.WriteLine($"Congratulations, your have has won and gained {xpAward}\n\n");
+                Console.WriteLine($"Congratulations, your hero has won battle and gained {xpAward}\n\n");
                 
                 hero.AwardForBattleWin();
             }

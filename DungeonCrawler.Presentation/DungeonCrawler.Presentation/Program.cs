@@ -12,11 +12,11 @@ namespace DungeonCrawler.Presentation
         {
             Console.WriteLine("-----DUNGEON CRAWLER GAME-----");
 
-            var isGameTurnedOff = true;
+            var isGameTurnedOff = false;
 
             while (isGameTurnedOff == false)
             {
-                Hero hero = GameView.ProvideNewHeroFromUserInput();
+                Hero hero = GameView.ProvideHero();
                 Game game = GameManager.InitializeNewGame(hero);
 
                 GameView.PlayGame(game);
@@ -27,7 +27,8 @@ namespace DungeonCrawler.Presentation
                 isGameTurnedOff = GameView.IsTurnedOff();
             }
 
-            Console.WriteLine("Thanks for playing game!");
+            Console.WriteLine($"\n\nYour score was {GameManager.GetNumberOfGamesWon()} games won!" +
+                $"\nThanks for playing game.");
         }
     }
 }

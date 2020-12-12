@@ -168,8 +168,10 @@ namespace DungeonCrawler.Presentation.Views
                 {
                     isAttackChoosen = true;
                 }
-
-                Console.WriteLine("Wrong input, try again...");
+                else
+                { 
+                    Console.WriteLine("Wrong input, try again...");
+                }
             }
 
             return choosenAttack;

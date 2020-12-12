@@ -37,15 +37,21 @@ namespace DungeonCrawler.Presentation.Views
                 }
             }
 
-            if (heroChooseInput == 0)
+            if (heroChooseInput == 1)
             {
-                return ProvideOldHeroFromUserInput();
+                return ProvideNewHeroFromUserInput();
             }
 
-            return ProvideNewHeroFromUserInput();
+            var hero = ProvideOldHeroFromUserInput();
+            if (hero is Hero)
+            {
+                return hero;
+            }
+
+            return ProvideHero();
         }
 
-        private static Hero ProvideOldHeroFromUserInput()
+        private static Hero? ProvideOldHeroFromUserInput()
         {
             Console.WriteLine("Choose one of your heroes by order number:\n");
 
@@ -64,14 +70,25 @@ namespace DungeonCrawler.Presentation.Views
             {
                 int.TryParse(Console.ReadLine(), out heroChooseInput);
 
-                if (heroChooseInput >= 0 && heroChooseInput < HeroDataStore.Heroes.Count)
+                if (heroChooseInput < 0 || heroChooseInput >= HeroDataStore.Heroes.Count)
                 {
-                    isHeroChoosen = true;
-                }
-                else
-                {
+                    isHeroChoosen = false;
                     Console.WriteLine("Your input for choosing hero is invalid, try again please...\n");
+
+                    continue;
                 }
+                    
+                var choosenHero = HeroDataStore.Heroes[heroChooseInput];
+
+                if (choosenHero.IsDead())
+                {
+                    isHeroChoosen = false;
+                    Console.WriteLine("Hero you have choosen is dead unfortunately :(, please use another one or create new one...\n");
+
+                    return null;
+                }
+
+                isHeroChoosen = true;
             }
 
             return HeroDataStore.Heroes[heroChooseInput];

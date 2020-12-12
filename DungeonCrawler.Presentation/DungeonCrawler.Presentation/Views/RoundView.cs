@@ -20,7 +20,7 @@ namespace DungeonCrawler.Presentation.Views
                 return;
             }
 
-            Console.WriteLine("\nPlease choose move for this round (choose wisely!):" +
+            Console.WriteLine("\nPlease choose attack strategy for this round (choose wisely!):" +
                 "\n0. Direct attack" +
                 "\n1. Side attack" +
                 "\n2. Counter attack" +

@@ -15,7 +15,6 @@ namespace DungeonCrawler.Data.Models.Heroes
         public void RageAttack(Monster opponent)
         {
             var rageCostInHp = (int)(HealthPoints.Max * 0.15);
-            //provjeri koliko je rageCost!!!
 
             if (HealthPoints.Current < rageCostInHp)
             {

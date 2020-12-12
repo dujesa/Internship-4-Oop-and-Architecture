@@ -79,8 +79,8 @@ namespace DungeonCrawler.Presentation.Views
             Console.WriteLine("\n" +
                 "\n Choose attack by its order number from menu." +
                 "\n Attack menu:\n" +
-                "1. ATTACK - cause damage to opponent" +
-                "2. MANA - use mana points for heal up" +
+                "1. ATTACK - cause damage to opponent\n" +
+                "2. MANA - use mana points for heal up\n" +
                 "\n");
 
             var attackType = ProvideAttackTypeFromUsersInput(mageAttackTypeCount);
@@ -105,7 +105,7 @@ namespace DungeonCrawler.Presentation.Views
             Console.WriteLine("\n" + 
                 "\n Choose attack by its order number from menu." +
                 "\n Attack menu:\n" +
-                "1. ATTACK - cause damage to opponent" +
+                "1. ATTACK - cause damage to opponent\n" +
                 "\n");
 
             var attackType = ProvideAttackTypeFromUsersInput(rangerAttackTypeCount);

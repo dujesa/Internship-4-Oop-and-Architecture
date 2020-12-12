@@ -8,6 +8,26 @@ namespace DungeonCrawler.Presentation.Views
 {
     public static class GameView
     {
+        public static void PlayGame(Game game)
+        {
+            Console.WriteLine($"Your hero {game.Hero.Name} is starting its Dungeon crawling adventure!");
+
+            game.Status = GameStatus.InPlay;
+            var battleCounter = 0;
+
+            while (IsGameOver(game.Status, battleCounter) == false)
+            {
+                BattleView.DoBattle(game, null);
+                battleCounter++;
+
+                if (game.Status == GameStatus.InPlay && battleCounter >= 10)
+                {
+                    game.Status = GameStatus.HeroWon;
+                }
+            }
+
+        }
+
         public static Hero ProvideHero()
         {
             if (HeroDataStore.Heroes.Count == 0)
@@ -51,7 +71,7 @@ namespace DungeonCrawler.Presentation.Views
             return ProvideHero();
         }
 
-        private static Hero? ProvideOldHeroFromUserInput()
+        private static Hero ProvideOldHeroFromUserInput()
         {
             Console.WriteLine("Choose one of your heroes by order number:\n");
 
@@ -70,28 +90,26 @@ namespace DungeonCrawler.Presentation.Views
             {
                 int.TryParse(Console.ReadLine(), out heroChooseInput);
 
-                if (heroChooseInput < 0 || heroChooseInput >= HeroDataStore.Heroes.Count)
+                if (heroChooseInput >= 0 && heroChooseInput < HeroDataStore.Heroes.Count)
                 {
-                    isHeroChoosen = false;
+                    isHeroChoosen = true;
+                }
+                else
+                {
                     Console.WriteLine("Your input for choosing hero is invalid, try again please...\n");
-
-                    continue;
                 }
-                    
-                var choosenHero = HeroDataStore.Heroes[heroChooseInput];
-
-                if (choosenHero.IsDead())
-                {
-                    isHeroChoosen = false;
-                    Console.WriteLine("Hero you have choosen is dead unfortunately :(, please use another one or create new one...\n");
-
-                    return null;
-                }
-
-                isHeroChoosen = true;
             }
 
-            return HeroDataStore.Heroes[heroChooseInput];
+            var choosenHero = HeroDataStore.Heroes[heroChooseInput];
+
+            if (choosenHero.IsDead())
+            {
+                Console.WriteLine("Hero you have choosen is dead unfortunately :(, please use another one or create new one...\n");
+
+                return null;
+            }
+
+            return choosenHero;
         }
 
         private static Hero ProvideNewHeroFromUserInput()
@@ -147,26 +165,6 @@ namespace DungeonCrawler.Presentation.Views
             {
                 Console.WriteLine($"BUG: Game error ocurred, game status is {game.Status}.");
             }
-        }
-
-        public static void PlayGame(Game game)
-        {
-            Console.WriteLine($"Your hero {game.Hero.Name} is starting its Dungeon crawling adventure!");
-
-            game.Status = GameStatus.InPlay;
-            var battleCounter = 0;
-
-            while (IsGameOver(game.Status, battleCounter) == false)
-            {
-                BattleView.DoBattle(game);
-                battleCounter++;
-
-                if (game.Status == GameStatus.InPlay && battleCounter >= 10)
-                {
-                    game.Status = GameStatus.HeroWon;
-                }
-            }
-
         }
 
         public static bool IsTurnedOff()

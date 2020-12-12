@@ -1,4 +1,5 @@
 ﻿using DungeonCrawler.Data;
+using System;
 
 namespace DungeonCrawler.Domain.Factories
 {
@@ -6,9 +7,7 @@ namespace DungeonCrawler.Domain.Factories
     {
         public static Battle CreateNewIn(Game game)
         {
-            var battleId = game.Battles.Count;
-
-            return new Battle(game, game.Hero, game.Monsters[battleId]);
+            return new Battle(game);
         }
     }
 }

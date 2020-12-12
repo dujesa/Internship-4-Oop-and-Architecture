@@ -32,16 +32,14 @@ namespace DungeonCrawler.Presentation.Views
             {
                 int.TryParse(Console.ReadLine(), out chosenMoveType);
 
-                if (chosenMoveType == (int)MoveType.DirectAttack ||
-                    chosenMoveType == (int)MoveType.SideAttack ||
-                    chosenMoveType == (int)MoveType.CounterAttack)
-                {
-                    isMoveValid = true;
-                }
-                else
+                if (!IsMoveValid(chosenMoveType))
                 {
                     Console.WriteLine("\nWrong move input, please try again.\n");
+                    continue;
                 }
+
+                isMoveValid = true;
+
             }
 
             Move heroMove = MoveFactory.CreateNewByTypeFor((MoveType)chosenMoveType, battle.Hero);
@@ -59,7 +57,7 @@ namespace DungeonCrawler.Presentation.Views
             else if (roundWinner is Monster monster)
             {
                 Console.WriteLine("Monster won in move battle and attacks hero.\n");
-                AttackView.HandleAttack(battle.Monster, battle.Hero, battle, game);
+                AttackView.HandleAttack(monster, battle.Hero, battle, game);
             }
             else
             {
@@ -73,6 +71,11 @@ namespace DungeonCrawler.Presentation.Views
             }
 
             Console.WriteLine($"\n\n{battle}\n\n");
+        }
+
+        private static bool IsMoveValid(int chosenMoveType)
+        {
+            return chosenMoveType == (int)MoveType.DirectAttack || chosenMoveType == (int)MoveType.SideAttack || chosenMoveType == (int)MoveType.CounterAttack;
         }
     }
 }

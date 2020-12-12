@@ -12,6 +12,6 @@
         RangerInitialHp = 100,
         RangerInitialDamage = 10,
         RangerInitialCriticalHitChance = 10,
-        RangerInitialStunChance = 5,
+        RangerInitialStunChance = 25,
     }
 }

@@ -1,23 +1,28 @@
 ﻿using DungeonCrawler.Data.Abstractions;
-using System;
 using System.Collections.Generic;
 
 namespace DungeonCrawler.Data
 {
     public class Battle
     {
+        public int Id { get; private set; }
         public Hero Hero { get; set; }
         public Monster Monster { get; set; }
         public Character Winner { get; set; }
         public List<Round> Rounds { get; } = new List<Round>();
         public bool IsStunActivated { get; private set; }
 
-        public Battle(Game game, Hero hero, Monster monster)
+        public Battle(Game game)
         {
-            game.Battles.Add(this);
+            game.AddBattle(this);
 
-            Hero = hero;
-            Monster = monster;
+            Hero = game.Hero;
+            Monster = game.Monsters[Id];
+        }
+
+        public void SetId(int newBattleId)
+        {
+            Id = newBattleId;
         }
 
         public void ActivateStun()
@@ -38,7 +43,7 @@ namespace DungeonCrawler.Data
         public override string ToString()
         {
             return $"\n" +
-                $"---------BATTLE---------\n" +
+                $"------{Id + 1}. BATTLE-------\n" +
                 $"{Hero}\n" +
                 $"-----------VS-----------\n" +
                 $"{Monster}\n" +

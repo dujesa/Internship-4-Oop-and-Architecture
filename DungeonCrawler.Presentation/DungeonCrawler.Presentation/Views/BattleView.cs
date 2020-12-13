@@ -4,6 +4,7 @@ using DungeonCrawler.Data.Enums;
 using DungeonCrawler.Data.Models.Heroes;
 using DungeonCrawler.Domain.Factories;
 using DungeonCrawler.Domain.Services;
+using DungeonCrawler.Domain.Utils;
 using System;
 
 namespace DungeonCrawler.Presentation.Views
@@ -36,13 +37,14 @@ namespace DungeonCrawler.Presentation.Views
 
                 var newMonstersCreated = MonsterDeathHandler.HandleCreationOfNewMonsters(game, battle.Monster);
 
-                if (newMonstersCreated > 0) Console.WriteLine($"*!*!*!*!*! On its death, monster just created {newMonstersCreated} new monsters !*!*!*!*!*");
+                if (newMonstersCreated > 0) ConsoleWriter.ColoredWriteColoredBackground($"*!*!*!*!*! On its death, monster just created {newMonstersCreated} new monsters !*!*!*!*!*", ConsoleColor.White, ConsoleColor.DarkMagenta);
 
                 return;
             }
 
             if (battle.Hero is Mage mage && mage.Resurrect())
             {
+                ConsoleWriter.ColoredWriteColoredBackground("Your Mage died but immidiately resurrected himself!!\n", ConsoleColor.Black, ConsoleColor.Red);
                 DoBattle(game, battle.Id);
 
                 return;

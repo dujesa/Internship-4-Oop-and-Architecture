@@ -3,6 +3,7 @@ using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
 using DungeonCrawler.Domain.Factories;
 using DungeonCrawler.Domain.Services;
+using DungeonCrawler.Domain.Utils;
 using System;
 
 namespace DungeonCrawler.Presentation.Views
@@ -21,13 +22,13 @@ namespace DungeonCrawler.Presentation.Views
             }
 
             Console.WriteLine("\nPlease choose attack strategy for this round (choose wisely!):" +
-                "\n0. Direct attack" +
+                "\n0. Direct attack (or just enter)" +
                 "\n1. Side attack" +
                 "\n2. Counter attack" +
                 "\n");
 
             var isMoveValid = false;
-            int chosenMoveType = 0;
+            var chosenMoveType = 0;
             while (isMoveValid == false)
             {
                 int.TryParse(Console.ReadLine(), out chosenMoveType);
@@ -39,7 +40,6 @@ namespace DungeonCrawler.Presentation.Views
                 }
 
                 isMoveValid = true;
-
             }
 
             Move heroMove = MoveFactory.CreateNewByTypeFor((MoveType)chosenMoveType, battle.Hero);
@@ -67,7 +67,7 @@ namespace DungeonCrawler.Presentation.Views
             if (game.IsJumbusActive)
             {
                 JumbusHandler.Handle(game);
-                Console.WriteLine("\n!*!*!*!*!* J-U-M-B-U-S done *!*!*!*!*!\n");
+                ConsoleWriter.ColoredWriteColoredBackground("\n!*!*!*!*!* J-U-M-B-U-S done *!*!*!*!*!\n", ConsoleColor.White, ConsoleColor.DarkMagenta);
             }
 
             Console.WriteLine($"\n\n{battle}\n\n");

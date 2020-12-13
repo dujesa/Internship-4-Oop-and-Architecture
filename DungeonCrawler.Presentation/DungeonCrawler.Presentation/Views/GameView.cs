@@ -2,6 +2,7 @@
 using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Enums;
 using DungeonCrawler.Domain.Factories;
+using DungeonCrawler.Domain.Utils;
 using System;
 
 namespace DungeonCrawler.Presentation.Views
@@ -10,17 +11,17 @@ namespace DungeonCrawler.Presentation.Views
     {
         public static void PlayGame(Game game)
         {
-            Console.WriteLine($"Your hero {game.Hero.Name} is starting its Dungeon crawling adventure!");
+            ConsoleWriter.ColoredBlockWrite($"Your hero {game.Hero.Name} is starting its Dungeon crawling adventure!", ConsoleColor.Black, ConsoleColor.White);
 
             game.Status = GameStatus.InPlay;
             var battleCounter = 0;
 
-            while (IsGameOver(game.Status, battleCounter) == false)
+            while (IsGameOver(game.Status, battleCounter, game.Monsters.Count) == false)
             {
                 BattleView.DoBattle(game, null);
                 battleCounter++;
 
-                if (game.Status == GameStatus.InPlay && battleCounter >= 10)
+                if (game.Status == GameStatus.InPlay && battleCounter >= game.Monsters.Count)
                 {
                     game.Status = GameStatus.HeroWon;
                 }
@@ -79,9 +80,7 @@ namespace DungeonCrawler.Presentation.Views
             {
                 var hero = HeroDataStore.Heroes[heroCount];
 
-                Console.WriteLine($"---{heroCount}. hero----\n");
-                Console.WriteLine(hero);
-                Console.WriteLine("--------------\n");
+                ConsoleWriter.BlockWriteWithCaption($"{heroCount}. hero", $"{hero}");
             }
 
             var isHeroChoosen = false;
@@ -139,16 +138,11 @@ namespace DungeonCrawler.Presentation.Views
 
         public static void ListPlayerStats(Game game)
         {
-            Console.WriteLine("\n\n---------Full Stats---------\n");
-
-            Console.WriteLine($"\n" +
+            ConsoleWriter.BlockWriteWithCaption("Full Stats", $"\n" +
                 $"Hero [{game.Hero.Name}]\n" +
                 $"\tlvl.{game.Hero.Level}\n" +
                 $"\tXP: {game.Hero.Experience}\n" +
-                $"\tBattles won: {game.Hero.Wins}\n"
-                );
-
-            Console.WriteLine($"\n----------------------------");
+                $"\tBattles won: {game.Hero.Wins}\n");
         }
 
         public static void PromptResult(Game game)
@@ -178,9 +172,9 @@ namespace DungeonCrawler.Presentation.Views
             return gameSwitchInput != 0;
         }
 
-        private static bool IsGameOver(GameStatus gameStatus, int battleCounter)
+        private static bool IsGameOver(GameStatus gameStatus, int battleCounter, int monstersToBeatCount)
         {
-            return gameStatus == GameStatus.HeroWon || gameStatus == GameStatus.HeroLost || battleCounter >= 10;
+            return gameStatus == GameStatus.HeroWon || gameStatus == GameStatus.HeroLost || battleCounter >= monstersToBeatCount;
         }
     }
 }

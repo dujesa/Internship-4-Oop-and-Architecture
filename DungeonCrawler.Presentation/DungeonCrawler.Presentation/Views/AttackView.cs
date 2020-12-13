@@ -2,6 +2,7 @@
 using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Data.Models.Heroes;
 using DungeonCrawler.Data.Models.Monsters;
+using DungeonCrawler.Domain.Utils;
 using System;
 
 namespace DungeonCrawler.Presentation.Views
@@ -38,8 +39,8 @@ namespace DungeonCrawler.Presentation.Views
 
         public static void HandleStunning(Battle battle)
         {
-            Console.WriteLine("\nMonster is stunned by your hero and your hero automatically won this rounds move battle.\n" +
-                "Your hero attacks monster\n");
+            ConsoleWriter.ColoredWriteColoredBackground("\nMonster is stunned by your hero and your hero automatically won this rounds move battle.\n", ConsoleColor.Black, ConsoleColor.Yellow);
+            Console.WriteLine("Your hero attacks monster\n");
 
             battle.Hero.Attack(battle.Monster);
 
@@ -121,7 +122,7 @@ namespace DungeonCrawler.Presentation.Views
             if (ranger.IsStunning())
             {
                 battle.ActivateStun();
-                Console.WriteLine("\n**Your ranger has stunned its opponent!**\n");
+                ConsoleWriter.ColoredWriteColoredBackground("\n**Your ranger has stunned its opponent!**\n", ConsoleColor.Black, ConsoleColor.Yellow);
             }
         }
 
@@ -146,7 +147,7 @@ namespace DungeonCrawler.Presentation.Views
             if (randomAttackType == jumbusType)
             {
                 game.ActivateJumbus();
-                Console.WriteLine("*!*!*!*!* Witch just started J-U-M-B-U-S *!*!*!*!*");
+                ConsoleWriter.ColoredWriteColoredBackground($"*!*!*!*!* Witch just started J-U-M-B-U-S *!*!*!*!*", ConsoleColor.White, ConsoleColor.DarkMagenta);
             }
             else
             { 

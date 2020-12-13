@@ -1,5 +1,4 @@
 ﻿using DungeonCrawler.Data.Models;
-using System;
 
 namespace DungeonCrawler.Data.Abstractions
 {

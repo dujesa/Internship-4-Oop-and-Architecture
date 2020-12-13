@@ -1,8 +1,8 @@
 ﻿using DungeonCrawler.Data;
 using DungeonCrawler.Data.Abstractions;
 using DungeonCrawler.Domain.Services;
+using DungeonCrawler.Domain.Utils;
 using DungeonCrawler.Presentation.Views;
-using System;
 
 namespace DungeonCrawler.Presentation
 {
@@ -10,7 +10,7 @@ namespace DungeonCrawler.Presentation
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("-----DUNGEON CRAWLER GAME-----");
+            ConsoleWriter.StartGameConsole();
 
             var isGameTurnedOff = false;
 
@@ -27,8 +27,7 @@ namespace DungeonCrawler.Presentation
                 isGameTurnedOff = GameView.IsTurnedOff();
             }
 
-            Console.WriteLine($"\n\nYour score was {GameManager.GetNumberOfGamesWon()} games won!" +
-                $"\nThanks for playing game.");
+            ConsoleWriter.EndGameConsole();
         }
     }
 }
